@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ERROR | E_PARSE);
-
 if(isset($_POST['submit'])){
     $to = "gustavsff@hotmail.lv";
     $from = $_POST['email'];
@@ -8,7 +6,7 @@ if(isset($_POST['submit'])){
     $subject = "Form submission";
     $subject2 = "Copy of your form submission";
     $message = $name . " wrote:" . "\n\n" . $_POST['comment'];
-    $message2 = "Here is a copy of your message " . $name . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $name . "\n\n" . $_POST['comment'];
     $headers = "From:" . $from;
     $headers2 = "From:" . $to;
     mail($to,$subject,$message,$headers);
@@ -16,7 +14,6 @@ if(isset($_POST['submit'])){
     echo('Mail sent!');
     }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,18 +31,19 @@ if(isset($_POST['submit'])){
         <canvas id="sound-vis"></canvas>
     </div>
     <p id="welcome-text"><span id="big-letters">Hey,</span> my name is <span id="big-letters">Gustavs Freimanis</span>
-     and I like to <span id="big-letters" id="spn-hobby">Skate</span></p>
+     and I like to <span id="big-letters" id="spn-hobby">Play guitar</span></p>
         <div id="video-div">
             <img src="img/iphonePic.png" alt="Image of Iphone" id="iphone-pic">
-            <video src="vid/websiteIntro.mp4" id="video" paused muted ></video>
+            <video src="vid/websiteIntro.mp4" id="video" playsinline paused muted ></video>
+            <div id="btn-play"> 
+                <p>Play</p> 
+            </div>
         </div>
-    
     </div>
 
     <div id="slide-2">
         <img src="img/GustavsPic.jpg" alt="Picture of Gustavs Freimanis" id="gustavs-pic">
         <hr>
-
         <div id="personal-info">
             <p>Name:</p>
             <p>Gustavs Freimanis</p>                       
@@ -55,15 +53,13 @@ if(isset($_POST['submit'])){
             <p>Riga</p>
             <p>Email:</p>
             <a href = "mailto: gustavsff@hotmail.lv">Gustavsff@hotmail.lv</a>
-
         </div>
         <div id="about-me">
             <p>About me:</p>
             <p>
-                I am a friendly, outgoing guy, interested in new technologies, 
-                I intend to keep practicing coding and developing new skills for the rest of my life. 
-                Working on group programming projects in my university 
-                I have learnt how to divide tasks, give and recieve constructed criticism.
+                I am a <b>friendly, outgoing guy</b>, interested in new technologies. 
+                <b>I love programming since</b>, it always challanges me and makes me think outside the box.
+                I'm a <b>team-player</b>, communication is my strong suit.
             </p>                                  
         </div>
     </div>
@@ -129,14 +125,12 @@ if(isset($_POST['submit'])){
             <input type="text" id="email" name="email">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name">
-            <textarea rows="4" cols="20" name="comment" id="comment" form="usrform" placeholder="Type your message here..."></textarea>
+            <textarea rows="4" cols="20" name="comment" id="comment" form="userform" placeholder="Type your message here..."></textarea>
             <input id="btn-submit" type="submit" name="submit" value="Submit">
         </form>
     </div>
-    <div id="footer">
-        
+    <div id="footer">       
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

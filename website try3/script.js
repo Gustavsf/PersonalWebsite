@@ -10,7 +10,7 @@ for(let i =0; i< socialMedia.length; i++){
         if(i === 0){
         window.open('https://www.linkedin.com/in/gustavs-freimanis-3966b9192/');
         } else{
-        window.open('https://github.com/Gustavsf');
+        window.open('https://github.com/Gustavsf/PersonalWebsite');
         }
     });
 }
@@ -18,10 +18,10 @@ for(let i =0; i< socialMedia.length; i++){
 function hobbyTextChange(){
     for(let i = 0; i < hobbies.length; i++){
     setTimeout(function(){
-        hobbyText.innerHTML ='<span id="big-letters">Hey,</span> my name is <span id="big-letters">Gustavs Freimanis</span>and I like to <span id="big-letters" id="spn-hobby">'+hobbies[i] +'</span>'; 
-                 
+        hobbyText.innerHTML ='<span id="big-letters">Hey,</span> my name is <span id="big-letters">Gustavs Freimanis</span>and I like to <span id="big-letters" id="spn-hobby">'+hobbies[i] +'</span>';                 
     }, i * 3000)}
 }
+
 //observer - animation and media
 var observer = new IntersectionObserver(function(entries) {
 	if(entries[0].isIntersecting === true){
@@ -41,7 +41,7 @@ var observer2 = new IntersectionObserver(function(entries) {
             if(audioFile.volume <= 0.1){
             audioFile.pause();
             vid.pause();
-            //vid.currentTime = audioFile.currentTime;
+            vid.currentTime = audioFile.currentTime;
             console.log('media paused');}
         } catch (error) {}                                     
     }
@@ -49,19 +49,19 @@ var observer2 = new IntersectionObserver(function(entries) {
 
 var observer3 = new IntersectionObserver(function(entries) {
 	if(entries[0].isIntersecting === true){
-        audioFile.play();
-        vid.play();
-        hobbyTextChange();
-        console.log('media resumed');
-        let isStart = true;
-
-        audioFile.volume = 0.3;
-        setTimeout(function(){
-            audioFile.volume = 0.6;          
-        }, 500)
-        setTimeout(function(){
-            audioFile.volume = 1;          
-        }, 1000)          
+        if(isPlayed){
+            audioFile.play();
+            vid.play();
+            hobbyTextChange();
+            console.log('media resumed');
+            audioFile.volume = 0.3;
+            setTimeout(function(){
+                audioFile.volume = 0.6;          
+            }, 500)
+            setTimeout(function(){
+                audioFile.volume = 1;          
+            }, 1000) 
+    }                
     }
 }, { threshold: [0.3] });
 
@@ -73,10 +73,23 @@ observer2.observe(document.getElementById('slide-3'));
 observer2.observe(document.getElementById('computer-skills'));
 observer3.observe(document.getElementById('video-div'));
 
-
 //audio visualizer
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioCtx = new AudioContext;
+
+const playButton = document.getElementById('btn-play');
+let isPlayed = false;
+playButton.addEventListener("click", function(){
+    audioFile.play();
+    audioFile.volume = 1;
+    vid.play();
+    hobbyTextChange();
+    playButton.style.display = 'none';
+    isPlayed = true;
+    audioCtx.resume();
+    vid.currentTime = audioFile.currentTime;
+});
 let audioFile = new Audio('vid/CyberpunkAcousticGuitar.mp3');
-const audioCtx = new AudioContext();
 const canvas = document.getElementById('sound-vis');
 const audioVis = document.getElementById('gray-box');
 const ctx = canvas.getContext('2d');
@@ -84,6 +97,7 @@ let audioSource = audioCtx.createMediaElementSource(audioFile);
 let analyser = audioCtx.createAnalyser();
 audioSource.connect(analyser);
 analyser.connect(audioCtx.destination);
+
 //sample size
 analyser.fftSize = 64;
 
