@@ -33,11 +33,12 @@ if(isset($_POST['submit'])){
     <p id="welcome-text"><span id="big-letters">Hey,</span> my name is <span id="big-letters">Gustavs Freimanis</span>
      and I like to <span id="big-letters" id="spn-hobby">Play guitar</span></p>
         <div id="video-div">
-            <img src="img/iphonePic.png" alt="Image of Iphone" id="iphone-pic">
-            <video src="vid/websiteIntro.mp4" id="video" playsinline paused muted ></video>
             <div id="btn-play"> 
                 <p>Play</p> 
             </div>
+            <img src="img/iphonePic.png" alt="Image of Iphone" id="iphone-pic">
+            <video src="vid/websiteIntro.mp4#t=0.01" id="video" playsinline paused muted ></video>
+            
         </div>
     </div>
 

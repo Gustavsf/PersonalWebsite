@@ -100,8 +100,13 @@ hr {
     rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
     rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
+/*remove opera video button*/
+#detach-button-host {
+  display: none !important;
+}
 #btn-play {
   position: absolute;
+  z-index: 300;
   top: 360px;
   left: 0;
   right: 0;
@@ -111,7 +116,6 @@ hr {
   height: 0;
   border-top: 50px solid transparent;
   border-left: 100px solid black;
-  transition: 1s ease-in-out;
   border-bottom: 50px solid transparent;
   animation: playAnimation 2s ease-in-out infinite;
 }
@@ -138,8 +142,8 @@ hr {
   z-index: -1;
 }
 #sound-vis {
-  margin-top: 500px;
-  height: 300px;
+  margin-top: 300px;
+  height: 500px;
   width: 100%;
   z-index: 100;
 }
@@ -303,10 +307,11 @@ hr {
   margin-bottom: 30px;
   height: 60px;
   width: 100px;
-  color: goldenrod;
+  background-color: #dad9db;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   font-weight: bold;
-  border: 1px solid black;
   font-size: 16px;
+  border: none;
 }
 
 #email:hover,
@@ -369,8 +374,8 @@ hr {
       box-shadow: 15px 0 5px -2px #888;
     }
     #sound-vis {
-      margin-top: 800px;
-      height: 200px;
+      margin-top: 650px;
+      height: 350px;
     }
     #btn-play {
       top: 300px;
